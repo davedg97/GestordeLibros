@@ -1,0 +1,72 @@
+        <img [src]="libroSeleccionado.image" 
+             [alt]="libroSeleccionado.title" 
+             class="libro-image" 
+             width="100" 
+             *ngIf="libroSeleccionado.image"> 
+<div class="p-fluid p-grid mt-3">
+            <div class="p-field p-col-12 p-md-8">
+                <span class="p-float-label">
+                    <input type="text"
+                        class="p-inputtext-lg"
+                        name="titulo"
+                        id="titulo"
+                        pInputText required autofocus 
+                        [disabled]="camposDisabled"
+                        pTooltip="Indique un título" 
+                        [(ngModel)]="libroSeleccionado.title"/>
+                    <label for="titulo">Título</label>
+                    <small class="p-error" *ngIf="submitted && !libroSeleccionado.title">El título es requerido</small>
+                </span>
+            </div>
+            <div class="p-field p-col-12 p-md-8">
+                <span class="p-float-label">
+                    <input type="text"
+                        class="p-inputtext-lg"
+                        name="autor"
+                        id="autor"
+                        pInputText required autofocus 
+                        [disabled]="camposDisabled"
+                        pTooltip="Indique un autor" 
+                        [(ngModel)]="libroSeleccionado.author"/>
+                    <label for="autor">Autor</label>
+                </span>
+            </div>    
+            <div class="p-field p-col-12 p-md-8">
+                <span class="p-float-label">
+                    <p-dropdown [options]="listaGeneros" 
+                                [(ngModel)]="libroSeleccionado.genre" 
+                                optionLabel="name" 
+                                optionValue="code"
+                                inputId="genero"
+                                [disabled]="camposDisabled"
+                                pTooltip="Indique un género"
+                                [showClear]="true"></p-dropdown>
+                    <label for="genero">Género</label>
+                </span>
+            </div>          
+            <div class="p-field p-col-12 p-md-8">
+                <span class="p-float-label">
+                    <p-calendar inputId="fechas"
+                                [disabled]="camposDisabled"
+                                pTooltip="Indique la fecha de publicación"
+                                dateFormat="dd/MM/yy" 
+                                [showIcon]="true" 
+                                [(ngModel)]="libroSeleccionado.published"></p-calendar>
+                    <label for="fechas">Fecha de publicación</label>
+                </span>
+            </div>                        
+            <div class="p-field p-col-12 p-md-8">
+                <span class="p-float-label">
+                    <textarea id="description"
+                            pInputTextarea rows="3" cols="70" autoResize="autoResize"
+                            [disabled]="camposDisabled"
+                            pTooltip="Indique una descripción" 
+                            [value]="libroSeleccionado.description"
+                            [(ngModel)]="libroSeleccionado.description"></textarea>
+                    <label for="description">Sinopsis</label>
+                </span>
+       
+            </div>    
+             
+ </div>
+        

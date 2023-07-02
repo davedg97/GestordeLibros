@@ -1,0 +1,78 @@
+
+
+<div class="container">
+ 
+          <h2>Listado de los Libros</h2>    
+     
+  
+    <div *ngIf="errorBusqueda" class="alert alert-danger"> No se han encontrado libros</div>
+  
+  <table *ngIf="listaLibros.length > 0" class="tabla-lista"  >
+    <thead>
+      <tr>
+        <th>Portada</th>
+        <th>Título</th>
+        <th>Autor</th>
+        <th>Género</th>
+        <th>ISBN</th>
+        <th>Publicación</th>
+        <th>Publicista</th>
+        <th>Descripción</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let libro of listaLibros" >
+        <td>
+          <img [src]="libro.image" [alt]="libro.title" width="50">
+        </td>
+        <td>{{ libro.title }}</td>
+        <td>{{ libro.author }}</td>
+        <td>{{ libro.genre }}</td>
+        <td>{{ libro.isbn }}</td>
+        <td>{{ libro.published | date:'dd/MM/yyyy' }}</td>
+        <td>{{ libro.publisher }}</td>
+        <td>{{ libro.description }}</td>
+        <td>
+          <div style="display: inline-flex;">
+            <button pButton icon="pi pi-pencil" class="mr-2 orange-button" (click)="modificarLibro(libro)" title="Modificar"></button>
+            <button pButton icon="pi pi-trash" class="mr-2 red-button" (click)="eliminarLibro(libro)" title="Eliminar"></button>
+            <button pButton icon="pi pi-eye" class="mr-2 blue-button" (click)="detalleLibro(libro)" title="Ver"></button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+    
+  </table>
+  <!--Modal Consulta Libro-->
+  <p-dialog [(visible)]="consultaLibro"
+  [style]="{'width': '600px'}" 
+  [header]="tituloDialog | uppercase" 
+  [modal]="true" 
+  [baseZIndex]="10000">
+ <ng-template pTemplate="content">
+   
+     <app-detallelibro [libroSeleccionado]="libroSeleccionado"  [camposDisabled]="camposDisabled"  [submitted]="submitted"></app-detallelibro>
+ </ng-template>
+ </p-dialog>
+
+  <!-- Modal de modificación-->
+  <p-dialog [(visible)]="libroModificacion"[style]="{'width': '600px'}"[header]="tituloDialog | uppercase" [modal]="true" [baseZIndex]="10000">
+    <ng-template pTemplate="content">
+        <app-detallelibro [libroSeleccionado]="libroSeleccionado" 
+                          [camposDisabled]="camposDisabled"
+                          [submitted]="submitted"></app-detallelibro>        
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-text" (click)="guardarLibro()" *ngIf="!camposDisabled"></button>
+        <button pButton pRipple [label]="nombreBoton" icon="pi pi-times" class="p-button-text" (click)="cerrarDetalleLibro()"></button>
+    </ng-template>
+    
+</p-dialog>
+
+ <!-- Modal de confirmación de eliminación -->
+<p-confirmDialog [style]="{'width': '450px'}"></p-confirmDialog>
+</div>
+
+

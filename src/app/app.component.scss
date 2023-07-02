@@ -1,0 +1,159 @@
+/* Estilos para el contenedor principal */
+.p-grid {
+    margin: 0;
+  }
+  
+  /* Estilos para el título */
+  h1 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  /* Estilos para el separador */
+  hr {
+    margin-top: 0;
+    margin-bottom: 2rem;
+    border: 0;
+    border-top: 1px solid rgb(0, 0, 0);
+  }
+  
+  /* Estilos para los campos de entrada de texto */
+  .p-inputtext-lg {
+    font-size: 1.2rem;
+  }
+  
+
+  
+ 
+  
+  /* Estilos para el botón "Buscar" */
+  .button-search {
+    background-color: #66ff00;
+    color: #fff;
+  }
+  
+  /* Estilos para el botón "Limpiar filtros" */
+  .button-warning {
+    background-color: #ff0707;
+    color: #fafafa;
+  }
+  
+  /* Estilos para el listado de libros */
+  .app-listado {
+    margin-top: 2rem;
+  }
+  /* Estilos para el formulario de filtros */
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.p-grid {
+  width: 100%;
+  max-width: 60rem;
+  margin: 0 auto;
+}
+
+.p-field {
+  display: flex;
+  flex-direction: column;
+  margin: 0 0.5rem;
+}
+
+.p-field .p-dropdown {
+  width: 100%;
+}
+
+.p-field .p-calendar {
+  width: 100%;
+}
+
+.p-field .p-button {
+  width: 100%;
+}
+
+button.p-button-warning {
+  margin-left: 1rem;
+}
+
+/* Estilos para el listado de libros */
+.row {
+  margin-top: 2rem;
+}
+
+/* Estilos para el botón de "Más filtros" */
+.button-filters {
+  cursor: pointer;
+  font-size: 1rem;
+
+}
+
+/* Estilos para el desplegable de filtros */
+.filtros-desplegable {
+  display: none;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #f5f5f5;
+}
+
+.filtros-desplegable label {
+  font-weight: bold;
+  margin-right: 0.5rem;
+}
+
+.filtros-desplegable .p-dropdown {
+  margin-right: 2rem;
+  width: 10rem;
+}
+
+.filtros-desplegable .p-calendar {
+  width: 10rem;
+}
+
+
+/* Estilos para el botón de "Cerrar filtros" */
+.cerrar-filtros {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1.5rem;
+  cursor: pointer;
+  color: #333;
+  font-size: 1.2rem;
+}
+
+.cerrar-filtros:hover {
+  text-decoration: underline;
+}
+
+/* Estilos para el botón de "Limpiar filtros" */
+.limpiar-filtros {
+  margin-left: 1rem;
+}
+
+
+  
+  
+  
+
+
+
+  
+    
+    .form-busqueda .col-md-6 {
+    flex-basis: 100%;
+    }
+    
+    .form-busqueda .col-md-3 {
+    flex-basis: calc(33.33% - 10px);
+    }
+    
+    .button-search, .button-warning, .button-filters {
+    width: 100%;
+    margin-bottom: 5px;
+    }

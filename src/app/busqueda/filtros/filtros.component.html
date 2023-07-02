@@ -1,0 +1,93 @@
+<h1>GESTION DE BUSQUEDA DE LIBROS</h1>
+<hr>
+
+
+<div class="p-fluid p-grid mt-3">
+    <div class="p-field p-col-12 p-md-8">
+        <h2>Comienza con tu busqueda</h2>
+        <span class="p-float-label">
+            <input type="text" class="p-inputtext-lg" name="titulo" id="titulo" pInputText pTooltip="Indique un título"
+                [(ngModel)]="filtro.titulo" (ngModelChange)="controlBotonLimpiar()" />
+            <label for="titulo">Introduce Titulo</label>
+        </span>
+    </div>
+</div>
+
+<div class="p-grid">
+    <div class="p-field p-col-4 p-md-2">
+
+        <button pButton pRipple label="Buscar" icon="pi pi-search" class="button-search" type="button"
+            (click)="buscar()"></button>
+
+    </div>
+    <div class="p-field p-col-4 p-md-2">
+        <button pButton pRipple label="Limpiar" icon="pi pi-trash" class="button-warning " [disabled]=botonDisabled
+            (click)="borrarFiltros()"></button>
+    </div>
+
+    <div class="p-field p-col-4 p-md-2">
+        <button pButton label="Más filtros" icon="pi pi-angle-down" class="button-filters"
+            (click)="masFiltros() ;  ocultarNuevoLibro()"></button>
+
+    </div>
+    <div class="p-field p-col-4 p-md-2">
+        <button pButton pRipple label="Nuevo libro" icon="pi pi-plus" class="p-button-success mr-2"
+            (click)="crearLibro(); "></button>
+    </div>
+
+
+
+
+</div>
+<!-- Modal de creacion-->
+<p-dialog [(visible)]="libroNuevo" [style]="{'width': '600px'}" [header]="tituloDialog | uppercase" [modal]="true"
+    [baseZIndex]="10000">
+    <ng-template pTemplate="content">
+
+        <app-detallelibro [libroSeleccionado]="libroSeleccionado" [camposDisabled]="camposDisabled"
+            [submitted]="submitted"></app-detallelibro>
+        <ng-template pTemplate="footer"></ng-template>
+        <button pButton pRipple label="Añadir" icon="pi pi-check" class="p-button-text" (click)="crearLibros()"
+            *ngIf="!camposDisabled"></button>
+            <button pButton pRipple [label]="nombreBoton" icon="pi pi-times" class="p-button-text" (click)="cerrarLibro()"></button>
+    </ng-template>
+</p-dialog>
+
+<!--MAS FILTROS-->
+<div class="row p-field p-col-12 p-md-12 text-center mt-3" *ngIf="verMasFiltros">
+    <div class="col p-field p-col-6 p-md-4">
+        <span class="p-float-label">
+            <p-dropdown [options]="listaGeneros" [(ngModel)]="filtro.genero" optionLabel="name" inputId="genero"
+                pTooltip="Indique un género" [showClear]="true" (ngModelChange)="controlBotonLimpiar()"></p-dropdown>
+            <label for="generos">Género</label>
+        </span>
+    </div>
+
+    <div class="col p-field p-col-6 p-md-4">
+        <span class="p-float-label">
+            <p-calendar selectionMode="range" name="fechas" inputId="fechas" pTooltip="Indique una fecha"
+                dateFormat="dd/mm/yy" [(ngModel)]="filtro.fechaPublicacionInicio"
+                (ngModelChange)="controlBotonLimpiar()"></p-calendar>
+            <label for="fechas">Fecha Publicación (Inicio)</label>
+        </span>
+    </div>
+
+
+
+    <div class="col p-field p-col-6 p-md-4">
+        <span class="p-float-label">
+            <p-calendar selectionMode="range" name="fechas" inputId="fechas" pTooltip="Indique una fecha"
+                dateFormat="dd/mm/yy" [(ngModel)]="filtro.fechaPublicacionFin"
+                (ngModelChange)="controlBotonLimpiar()"></p-calendar>
+            <label for="fechas">Fecha Publicación (Fin)</label>
+        </span>
+    </div>
+</div>
+
+
+<!--Mensaje de Error Busqueda-->
+<div class="row">
+    <div class="col">
+        <app-listado [listaLibros]="listaLibros" [errorBusqueda]="errorBusqueda"></app-listado>
+    </div>
+</div>
